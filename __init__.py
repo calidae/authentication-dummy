@@ -1,7 +1,7 @@
 from trytond.pool import Pool
 
 __all__ = ['register']
-from .user import *
+from .user import User
 
 
 def register():

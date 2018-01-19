@@ -1,5 +1,5 @@
-calidae-authentication_dummy
-============================
+trytoncalidae-authentication_dummy
+==================================
 
 The authentication_dummy module of the Tryton application platform.
 
@@ -7,6 +7,17 @@ Installing
 ----------
 
 See INSTALL
+
+Support
+-------
+
+If you encounter any problems with Tryton, please don't hesitate to ask
+questions on the Tryton bug tracker, mailing list, wiki or IRC channel:
+
+  http://bugs.tryton.org/
+  http://groups.tryton.org/
+  http://wiki.tryton.org/
+  irc://irc.freenode.net/tryton
 
 License
 -------
@@ -17,3 +28,8 @@ Copyright
 ---------
 
 See COPYRIGHT
+
+
+For more information please visit the Tryton web site:
+
+  http://www.tryton.org/
