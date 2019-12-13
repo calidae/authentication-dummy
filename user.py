@@ -1,11 +1,9 @@
-from future.utils import with_metaclass
-
 from trytond.pool import PoolMeta
 
 __all__ = ['User']
 
 
-class User(with_metaclass(PoolMeta)):
+class User(metaclass=PoolMeta):
     __name__ = 'res.user'
 
     @classmethod
