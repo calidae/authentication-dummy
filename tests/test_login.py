@@ -1,19 +1,45 @@
-import unittest
 
 
-from trytond.tests.test_tryton import ModuleTestCase
-from trytond.tests.test_tryton import suite as test_suite
+from trytond.tests.test_tryton import DB_NAME
+from werkzeug.test import Client
+from trytond.wsgi import app
+from werkzeug.wrappers import Response
+from werkzeug.wrappers.json import JSONMixin, _JSONModule
+from trytond.protocols.jsonrpc import JSONDecoder, JSONEncoder
 
 
-class AuthenticationDummyTestCase(ModuleTestCase):
-    'Test Authentication Dummy module'
-    module = 'authentication_dummy'
+class TrytonJSONModule(_JSONModule):
+    @classmethod
+    def dumps(cls, obj, **kw):
+        kw.setdefault('cls', JSONEncoder)
+        return super().dumps(obj, **kw)
 
-def test_login_dummy(self):
-    self.assertTrue(False)
+    @staticmethod
+    def loads(s, **kw):
+        kw.setdefault('object_hook', JSONDecoder())
+        return _JSONModule.loads(s, **kw)
 
-def suite():
-    suite = test_suite()
-    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(
-            AuthenticationDummyTestCase))
-    return suite
+
+class JSONResponse(JSONMixin, Response):
+    json_module = TrytonJSONModule
+
+
+class LoginTestCase(object):
+
+    def test_login_dummy(self):
+        # GIVEN
+        client = Client(app, JSONResponse)
+
+        # WHEN
+        user_id, user_login = self.user
+        result = client.post(
+            '/{}/'.format(DB_NAME),
+            json={
+                'method': 'common.db.login',
+                'params': [user_login, 'chupala']
+            },
+        )
+        result, _ = result.json
+
+        # THEN
+        self.assertEqual(result, user_id)
