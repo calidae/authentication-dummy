@@ -3,7 +3,6 @@ import time
 
 from trytond import backend
 
-
 try:
     backend_name = backend.name()
 except TypeError:
@@ -14,3 +13,10 @@ if backend_name == 'sqlite':
 else:
     database_name = 'test_' + str(int(time.time()))
 os.environ.setdefault('DB_NAME', database_name)
+
+try:
+    from tests.test_authentication_dummy import suite
+except ImportError:
+    from .test_authentication_dummy import suite
+
+__all__ = ['suite']
