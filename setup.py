@@ -28,9 +28,12 @@ def get_require_version(name):
         require = '%s >= %s.%s.dev0, < %s.%s'
     else:
         require = '%s >= %s.%s, < %s.%s'
-    require %= (name, major_version, minor_version,
-        major_version, minor_version + 1)
+    require %= (
+        name, major_version, minor_version,
+        major_version, minor_version + 1
+    )
     return require
+
 
 config = ConfigParser()
 config.readfp(open('tryton.cfg'))
@@ -56,10 +59,11 @@ if minor_version % 2:
     # Add development index for testing with proteus
     dependency_links.append('https://trydevpi.tryton.org/')
 
-setup(name='%s_%s' % (PREFIX, MODULE),
+setup(
+    name='%s_%s' % (PREFIX, MODULE),
     version=version,
     description='Authenticate without password',
-    long_description=read('README'),
+    long_description=read('README.md'),
     author='Calidae',
     author_email='erp@calidae.com',
     url='https://bitbucket.org/calidae/',
@@ -71,10 +75,13 @@ setup(name='%s_%s' % (PREFIX, MODULE),
         'trytond.modules.%s.tests' % MODULE,
         ],
     package_data={
-        'trytond.modules.%s' % MODULE: (info.get('xml', [])
-            + ['tryton.cfg', 'view/*.xml', 'locale/*.po', '*.odt',
-                'icons/*.svg', 'tests/*.rst']),
-        },
+        'trytond.modules.%s' % MODULE: (
+            info.get('xml', [])
+            + [
+                'tryton.cfg',
+            ]
+        ),
+    },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
@@ -97,10 +104,11 @@ setup(name='%s_%s' % (PREFIX, MODULE),
         'Natural Language :: Slovenian',
         'Natural Language :: Spanish',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Office/Business',
@@ -117,4 +125,4 @@ setup(name='%s_%s' % (PREFIX, MODULE),
     test_loader='trytond.test_loader:Loader',
     tests_require=tests_require,
     use_2to3=True,
-    )
+)

@@ -13,3 +13,21 @@ Authentication dummy is very simple:
 [session]
 authentications = dummy
 ```
+
+## Support
+
+If you encounter any problems with Tryton, please don't hesitate to ask
+questions on the Tryton bug tracker, mailing list, wiki or IRC channel:
+
+  http://bugs.tryton.org/
+  http://groups.tryton.org/
+  http://wiki.tryton.org/
+  irc://irc.freenode.net/tryton
+
+## License
+
+See LICENSE
+
+## Copyright
+
+See COPYRIGHT
