@@ -65,9 +65,9 @@ setup(
     description='Authenticate without password',
     long_description=read('README.md'),
     author='Calidae',
-    author_email='erp@calidae.com',
-    url='https://bitbucket.org/calidae/',
-    download_url="https://bitbucket.org/calidae/trytond-%s" % MODULE,
+    author_email='dev@calidae.com',
+    url='https://github.com/calidae/',
+    download_url="https://github.com/calidae/%s" % MODULE,
     keywords='',
     package_dir={'trytond.modules.%s' % MODULE: '.'},
     packages=[
