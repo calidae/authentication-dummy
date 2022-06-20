@@ -1,11 +1,8 @@
-import unittest
-
 from trytond.pool import Pool
-import trytond.tests.test_tryton
 from trytond.tests.test_tryton import ModuleTestCase
 from trytond.tests.test_tryton import with_transaction
 
-from . import factories
+from trytond.modules.authentication_dummy.tests import factories
 
 
 class AuthenticationDummyTestCase(ModuleTestCase):
@@ -29,11 +26,4 @@ class AuthenticationDummyTestCase(ModuleTestCase):
         self.assertEqual(login, user.id)
 
 
-def suite():
-    suite = trytond.tests.test_tryton.suite()
-    suite.addTests(
-        unittest.TestLoader().loadTestsFromTestCase(
-            AuthenticationDummyTestCase
-        )
-    )
-    return suite
+del ModuleTestCase

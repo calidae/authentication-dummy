@@ -1,7 +1,10 @@
+__version__ = '6.2.1'
+
 from trytond.pool import Pool
 
+from .user import User  # NOQA: 401
+
 __all__ = ['register']
-from .user import User
 
 
 def register():
