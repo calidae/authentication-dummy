@@ -1,3 +1,4 @@
+
 from trytond.pool import Pool
 
 __all__ = ['register']
