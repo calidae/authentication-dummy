@@ -3,7 +3,7 @@ from trytond.pool import Pool
 from . import factories
 
 
-def test_login_dummy():
+def test_login_dummy(transaction):
 
     # GIVEN
     User = Pool().get('res.user')

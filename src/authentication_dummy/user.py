@@ -8,6 +8,7 @@ class User(metaclass=PoolMeta):
 
     @classmethod
     def _login_dummy(cls, login, parameters):
+        print('ADEUUUUUUUUUU')
         user_id, _, _ = cls._get_login(login)
         if user_id:
             return user_id
