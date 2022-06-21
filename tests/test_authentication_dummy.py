@@ -5,7 +5,9 @@ import trytond.tests.test_tryton
 from trytond.tests.test_tryton import ModuleTestCase
 from trytond.tests.test_tryton import with_transaction
 
-from . import factories
+
+from factories import User as UserFactory
+
 
 
 class AuthenticationDummyTestCase(ModuleTestCase):
@@ -17,7 +19,7 @@ class AuthenticationDummyTestCase(ModuleTestCase):
 
         # GIVEN
         User = Pool().get('res.user')
-        user = factories.User.create(
+        user = UserFactory.create(
             login='test',
             password='good_pass'
         )

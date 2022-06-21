@@ -3,7 +3,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 
-from setuptools import setup
+from setuptools import setup, find_packages
 import re
 import os
 import io
@@ -72,8 +72,9 @@ setup(
     package_dir={'trytond.modules.%s' % MODULE: '.'},
     packages=[
         'trytond.modules.%s' % MODULE,
-        'trytond.modules.%s.tests' % MODULE,
-        ],
+    ] + [
+        f'trytond.modules.{MODULE}.{p}' for p in find_packages()
+    ],
     package_data={
         'trytond.modules.%s' % MODULE: (
             info.get('xml', [])
