@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# This file is part account_es module for Tryton.
-# The COPYRIGHT file at the top level of this repository contains
-# the full copyright notices and license terms.
-
-from setuptools import setup
+from setuptools import find_packages, setup
 import re
 import os
 import io
@@ -72,8 +67,10 @@ setup(
     package_dir={'trytond.modules.%s' % MODULE: '.'},
     packages=[
         'trytond.modules.%s' % MODULE,
-        'trytond.modules.%s.tests' % MODULE,
-        ],
+    ] + [
+        'trytond.modules.%s.%s' % (MODULE, p)
+        for p in find_packages()
+    ],
     package_data={
         'trytond.modules.%s' % MODULE: (
             info.get('xml', [])
@@ -104,23 +101,23 @@ setup(
         'Natural Language :: Slovenian',
         'Natural Language :: Spanish',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Office/Business',
         ],
     license='GPL-3',
     install_requires=requires,
+    extras_require={
+        'test': tests_require,
+    },
     dependency_links=dependency_links,
     zip_safe=False,
     entry_points="""
     [trytond.modules]
     %s = trytond.modules.%s
     """ % (MODULE, MODULE),
-    test_suite='tests',
-    test_loader='trytond.test_loader:Loader',
-    tests_require=tests_require,
 )
